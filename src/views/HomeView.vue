@@ -1,18 +1,27 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="text-white">
+      <Tweet v-for="tweet in tweets" :key="tweet._id" :tweet="tweet" />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import vuweets from '@/vuweets';
+import { ref } from 'vue';
+import Tweet from '@/components/VuWeet.vue';
 
 export default {
-  name: 'HomeView',
   components: {
-    HelloWorld
+    Tweet,
+  },
+  setup () {
+    const tweets = ref(vuweets);
+
+    return {
+      tweets,
+      Tweet
+    }
   }
 }
 </script>
